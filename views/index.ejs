@@ -1,0 +1,45 @@
+<%- include("./header/_header") %>
+
+<!-- Main -->
+<main id="site-main">
+  <div class="button-box">
+    <a href="/contacts/add" class="btn btn-light"
+      ><i class="fa-solid fa-user-plus"></i>연락처 추가</a
+    >
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>메일 주소</th>
+        <th>전화번호</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(user => { %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td>
+          <a href="/contacts/<%= user._id %>" class="btn update" title="수정">
+            <i class="fas fa-pencil-alt"></i>
+          </a>
+          <form
+            action="/contacts/<%= user._id %>?_method=DELETE"
+            method="POST"
+            style="display: inline"
+          >
+            <input type="submit" class="btn delete" title="삭제" value="X" />
+          </form>
+        </td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+</main>
+<!-- /Main -->
+
+<%- include("./footer/_footer") %>
